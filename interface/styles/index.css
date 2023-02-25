@@ -3,5 +3,35 @@
 @tailwind utilities;
 
 body {
-	background-color: transparent;
+	background: rgb(46, 51, 195);
+	background: linear-gradient(120deg, rgba(46, 51, 195, 1) 0%, rgba(107, 39, 89, 1) 100%);
+	font-family: system-ui, Arial;
+}
+
+/* headings */
+h1 {
+	font-size: 64px;
+	font-weight: 700;
+}
+
+/* main card */
+h2 {
+	font-size: 32px;
+	font-weight: 700;
+}
+
+h3 {
+	font-size: 24px;
+	color: #d3cfcf;
+}
+
+/* secondary card */
+h4 {
+	font-size: 24px;
+	font-weight: 500;
+}
+
+h5 {
+	font-size: 18px;
+	color: #d3cfcf;
 }

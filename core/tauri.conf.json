@@ -56,9 +56,11 @@
       {
         "fullscreen": false,
         "height": 600,
-        "resizable": true,
+        "minHeight": 600,
+        "resizable": false,
         "title": "Pulse",
-        "width": 800
+        "width": 800,
+        "minWidth": 800
       }
     ]
   }
