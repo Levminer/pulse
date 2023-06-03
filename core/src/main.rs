@@ -3,7 +3,26 @@
     windows_subsystem = "windows"
 )]
 
-use sysinfo::{ProcessExt, System, SystemExt};
+use serde::Serialize;
+use std::path::Path;
+use sysinfo::{Pid, ProcessExt, System, SystemExt};
+
+#[derive(Debug, Serialize)]
+pub struct Process {
+    pub pid: i32,
+    pub name: String,
+    pub path: String,
+}
+
+impl Process {
+    pub fn new(pid: &Pid, name: &str, path: &Path) -> Process {
+        let pid = pid.to_string().parse().unwrap();
+        let name = name.to_string();
+        let path = path.to_str().unwrap().to_string();
+
+        Process { pid, name, path }
+    }
+}
 
 fn main() {
     tauri::Builder::default()
@@ -13,16 +32,18 @@ fn main() {
 }
 
 #[tauri::command]
-fn get_processes() -> String {
+fn get_processes() -> Vec<Process> {
     let mut sys = System::new_all();
 
     sys.refresh_all();
 
-    let mut values = String::new();
+    let mut values: Vec<Process> = Vec::new();
 
     for (pid, process) in sys.processes() {
-        values += &format!("[{}] {} {:?} \n", pid, process.name(), process.exe());
+        if process.exe().to_string_lossy() != "" {
+            values.push(Process::new(pid, process.name(), process.exe()));
+        }
     }
 
-    return values.to_string();
+    return values;
 }
