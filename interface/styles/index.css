@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	color-scheme: dark;
+}
+
 body {
 	background: rgb(46, 51, 195);
 	background: linear-gradient(120deg, rgba(46, 51, 195, 1) 0%, rgba(107, 39, 89, 1) 100%);
@@ -12,12 +16,14 @@ body {
 h1 {
 	font-size: 64px;
 	font-weight: 700;
+	color: white;
 }
 
 /* main card */
 h2 {
 	font-size: 32px;
 	font-weight: 700;
+	color: white;
 }
 
 h3 {
